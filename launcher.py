@@ -1,6 +1,6 @@
-import os
+import os, subprocess
 import sys
-import Sniffer, FakeAccessPoint, sniff
+import Sniffer
 
 # Console colors
 W = '\033[0m'  # white (normal)
@@ -26,17 +26,37 @@ def main():
     while True:
         input = raw_input()
         if input == '1':
-            print G+'Chiamo il modulo sniffing'+W
-            a = ['D0:65:CA:2A:9E:F2','A0:8D:16:61:A7:EA', '10:1C:0C:6A:75:AE', 'DC:3E:F8:A2:21:6C', '34:8A:7B:AE:FC:66',
-                 'CC:FA:00:B5:77:4F']
-            s = Sniffer.Sniffer()
-            print s.listDevice(a)
-            sniff.pktPrint()
+            print '[INFO] Looking for a monitor-mode interface'
+
+            cmd = "ifconfig -a | grep mon"
+            try:
+                mon_interfaces = subprocess.check_output(cmd, shell=True)
+                print mon_interfaces
+            except:
+                print('[INFO] No monitor-mode interfaces found')
+                mon_interfaces = False
+            if not mon_interfaces:
+                print '[INFO] Looking for a Wlan interface'
+                cmd = "ifconfig -a | grep wlan"
+                try:
+                    wlan_interfaces = subprocess.check_output(cmd, shell=True)
+                except:
+                    print('[INFO] No Wlan interfaces found... Exiting')
+                    exit(1)
+
+                if wlan_interfaces:
+                    print '[INFO] Wlan found'
+                    print('[INFO] Please put in monitor mode ("$ airmon-ng start wlanX") one of these interfaces:\n' + wlan_interfaces)
+                    exit(1)
+            else:
+                interface = raw_input('Enter a Monitor interface: ')
+                print'calling sniffer'
+
             exit()
 
         elif input == '2':
             print 'Chiamo il modulo FAP'
-            f = FakeAccessPoint.FakeAccessPoint()
+            #f = FakeAccessPoint.FakeAccessPoint()
             exit()
 
         else:

@@ -1,5 +1,3 @@
-from scapy.all import *
-import manuf
 
 
 class Sniffer(object):
@@ -7,7 +5,10 @@ class Sniffer(object):
     This module provides multiple sniffing and filtering options
     """
 
-    monitor_interface = ''
+    def __init__(self, interface):
+        self.interface = interface
+        print interface
+        exit('ciao')
 
     def listDevice(self, macAddresses):
         s = manuf.MacParser()
