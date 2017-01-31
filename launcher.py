@@ -1,6 +1,6 @@
-import os, subprocess
-import sys
+import os, subprocess, sys
 import Sniffer
+from scapy.all import *
 
 # Console colors
 W = '\033[0m'  # white (normal)
@@ -15,58 +15,122 @@ ast = '['+B+'*'+W+'] '
 min = '['+R+'-'+W+'] '
 plu = '['+G+'+'+W+'] '
 
-def main():
+def check_root():
     if not os.geteuid() == 0:
         sys.exit(R+'WirelessPrism must be run as root... Exiting'+W)
 
-    print(G+'Welcome in WirelessPrism, please choose one of the following activities:'+W)
-    print('[1] Passive Sniffing')
-    print('[2] Fake Access Point')
+def print_menu():
+    print('\n'+G + 'Welcome in Wireless Mayhem Framework, please choose one of the following activities:' + W)
+    print(R + '[1]' + W + ' Wi-Fi SSID Sniffer')
+    print(R + '[2]' + W + ' Sensible Data Sniffer')
+    print(R + '[3]' + W + ' FTP Credential Sniffer')
+    print(R + '[4]' + W + ' Mail Sniffer')
+    print(R + '[5]' + W + ' Airodump')
 
+def select_interface():
+    #print G + '[INFO] You choose: Wi-Fi SSID Sniffer' + W
+    print '[INFO] Looking for a monitor-mode interface'
+
+    # cerca interfacce in monitor mode
+    cmd = "ifconfig -a | grep mon"
+    try:
+        mon_interfaces = subprocess.check_output(cmd, shell=True)
+        print mon_interfaces
+
+    except:
+        print '[INFO] No monitor-mode interfaces found'
+        mon_interfaces = False
+
+    # cerca interfacce wireless
+    if not mon_interfaces:
+        cmd = "ifconfig -a | grep wlan"
+        print '[INFO] Looking for a Wlan interface'
+
+        try:
+            wlan_interfaces = subprocess.check_output(cmd, shell=True)
+
+        except:
+            # non ci sono nemmeno interfacce wireless
+            print '[INFO] No Wlan interfaces found... Exiting'
+            return False
+
+        # ci sono interfacce ma esci e metti in monitor
+        if wlan_interfaces:
+            print '[INFO] Wlan found'
+            print '[INFO] Please put in monitor mode ("$ airmon-ng start wlanX") one of these interfaces:\n'+wlan_interfaces
+            return False
+    else:
+        interface = raw_input('Enter a Monitor interface: ')
+
+    return interface
+
+def main():
+    check_root()
     while True:
-        input = raw_input()
-        if input == '1':
-            print '[INFO] Looking for a monitor-mode interface'
+        try:
+            print_menu()
+            input = raw_input()
 
-            #cerca interfacce in monitor mode
-            cmd = "ifconfig -a | grep mon"
-            try:
-                mon_interfaces = subprocess.check_output(cmd, shell=True)
-                print mon_interfaces
-            except:
-                print('[INFO] No monitor-mode interfaces found')
-                mon_interfaces = False
-
-            #cerca interfacce wireless
-            if not mon_interfaces:
-                print '[INFO] Looking for a Wlan interface'
-                cmd = "ifconfig -a | grep wlan"
-                try:
-                    wlan_interfaces = subprocess.check_output(cmd, shell=True)
-                except:
-                    #non ci sono nemmeno interfacce wireless
-                    print('[INFO] No Wlan interfaces found... Exiting')
+            if input == '1':
+                print G+'[INFO] Starting Wi-Fi SSID Sniffer'+ W
+                interface = select_interface()
+                if interface:
+                    try:
+                        sniff(iface=interface, prn=Sniffer.ssidSniffer)
+                    except(KeyboardInterrupt, SystemExit):
+                        pass
+                else:
                     exit(1)
 
-                #ci sono interfacce ma esci e metti in monitor
-                if wlan_interfaces:
-                    print '[INFO] Wlan found'
-                    print('[INFO] Please put in monitor mode ("$ airmon-ng start wlanX") one of these interfaces:\n' + wlan_interfaces)
+            elif input == '2':
+                print G+'[INFO] Starting Sensible Data Sniffer'+ W
+                interface = select_interface()
+                if interface:
+                    try:
+                        sniff(filter='tcp', iface=interface, prn=Sniffer.sendibleDataSniff, store=0)
+                    except(KeyboardInterrupt, SystemExit):
+                        pass
+                else:
                     exit(1)
-            else:
 
-                interface = raw_input('Enter a Monitor interface: ')
-                print'calling sniffer'
+            elif input == '3':
+                print G+'[INFO] Starting FTP Credential Sniffer'+ W
+                interface = select_interface()
+                if interface:
+                    try:
+                        sniff(filter='tcp port 21', iface=interface, prn=Sniffer.ftpSniff, store=0)
+                    except(KeyboardInterrupt, SystemExit):
+                        pass
+                else:
+                    exit(1)
 
-            exit()
+            elif input == '4':
+                print G+'[INFO] Starting Mail Sniffer'+ W
+                interface = select_interface()
+                if interface:
+                    try:
+                        sniff(filter="tcp port 110 or tcp port 25 or tcp port 143", prn=Sniffer.mailSniff, store=0)
+                    except(KeyboardInterrupt, SystemExit):
+                        pass
+                else:
+                    exit(1)
 
-        elif input == '2':
-            print 'Chiamo il modulo FAP'
-            #f = FakeAccessPoint.FakeAccessPoint()
-            exit()
+            elif input == '5':
+                print G+'Chiamo il modulo AiroDump'+ W
+                interface = select_interface()
+                if interface:
+                    try:
+                        sniff(iface=interface, prn=Sniffer.Airodump)
+                    except(KeyboardInterrupt, SystemExit):
+                        #print_menu()
+                        pass
+                else:
+                    exit(1)
+                #f = FakeAccessPoint.FakeAccessPoint()
+                exit()
 
-        else:
-            print('please choose one of the options and enter the corrispective number: ')
+        except KeyboardInterrupt:
+            exit('\nBye, Bye\n')
 
 if __name__ == '__main__':
     main()
