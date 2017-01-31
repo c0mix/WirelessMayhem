@@ -19,7 +19,7 @@ def main():
     if not os.geteuid() == 0:
         sys.exit(R+'WirelessPrism must be run as root... Exiting'+W)
 
-    print('Welcome in WirelessPrism, please choose one of the following activities:')
+    print(G+'Welcome in WirelessPrism, please choose one of the following activities:'+W)
     print('[1] Passive Sniffing')
     print('[2] Fake Access Point')
 
@@ -28,6 +28,7 @@ def main():
         if input == '1':
             print '[INFO] Looking for a monitor-mode interface'
 
+            #cerca interfacce in monitor mode
             cmd = "ifconfig -a | grep mon"
             try:
                 mon_interfaces = subprocess.check_output(cmd, shell=True)
@@ -35,20 +36,25 @@ def main():
             except:
                 print('[INFO] No monitor-mode interfaces found')
                 mon_interfaces = False
+
+            #cerca interfacce wireless
             if not mon_interfaces:
                 print '[INFO] Looking for a Wlan interface'
                 cmd = "ifconfig -a | grep wlan"
                 try:
                     wlan_interfaces = subprocess.check_output(cmd, shell=True)
                 except:
+                    #non ci sono nemmeno interfacce wireless
                     print('[INFO] No Wlan interfaces found... Exiting')
                     exit(1)
 
+                #ci sono interfacce ma esci e metti in monitor
                 if wlan_interfaces:
                     print '[INFO] Wlan found'
                     print('[INFO] Please put in monitor mode ("$ airmon-ng start wlanX") one of these interfaces:\n' + wlan_interfaces)
                     exit(1)
             else:
+
                 interface = raw_input('Enter a Monitor interface: ')
                 print'calling sniffer'
 
