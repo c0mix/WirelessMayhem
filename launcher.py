@@ -28,8 +28,7 @@ def print_menu():
     print(R + '[5]' + W + ' Airodump')
 
 def select_interface():
-    #print G + '[INFO] You choose: Wi-Fi SSID Sniffer' + W
-    print '[INFO] Looking for a monitor-mode interface'
+    print B+'[INFO]'+W+' Looking for a monitor-mode interface'
 
     # cerca interfacce in monitor mode
     cmd = "ifconfig -a | grep mon"
@@ -38,31 +37,35 @@ def select_interface():
         print mon_interfaces
 
     except:
-        print '[INFO] No monitor-mode interfaces found'
+        print R+'[INFO]'+W+' No monitor-mode interfaces found'
         mon_interfaces = False
 
     # cerca interfacce wireless
     if not mon_interfaces:
         cmd = "ifconfig -a | grep wlan"
-        print '[INFO] Looking for a Wlan interface'
+        print B+'[INFO]'+W+' Looking for a Wlan interface'
 
         try:
             wlan_interfaces = subprocess.check_output(cmd, shell=True)
 
         except:
             # non ci sono nemmeno interfacce wireless
-            print '[INFO] No Wlan interfaces found... Exiting'
+            print R+'[INFO]'+W+' No Wlan interfaces found... Exiting'
             return False
 
         # ci sono interfacce ma esci e metti in monitor
         if wlan_interfaces:
-            print '[INFO] Wlan found'
-            print '[INFO] Please put in monitor mode ("$ airmon-ng start wlanX") one of these interfaces:\n'+wlan_interfaces
+            print G+'[INFO]'+W+' Wlan found'
+            print B+'[INFO]'+W+' Please put in monitor mode ("$ airmon-ng start wlanX") one of these interfaces:\n'+wlan_interfaces
             return False
     else:
         interface = raw_input('Enter a Monitor interface: ')
 
     return interface
+
+def select_filename():
+    filename = raw_input('Enter a Filename: ')
+    return filename
 
 def main():
     check_root()
@@ -116,18 +119,18 @@ def main():
                     exit(1)
 
             elif input == '5':
-                print G+'Chiamo il modulo AiroDump'+ W
+                print G+'[INFO] Starting AirDump'+ W
                 interface = select_interface()
                 if interface:
+                    filename = select_filename()
                     try:
-                        sniff(iface=interface, prn=Sniffer.Airodump)
+                        Sniffer.Airdump(interface, filename)
                     except(KeyboardInterrupt, SystemExit):
-                        #print_menu()
                         pass
                 else:
                     exit(1)
-                #f = FakeAccessPoint.FakeAccessPoint()
-                exit()
+                time.sleep(1)
+
 
         except KeyboardInterrupt:
             exit('\nBye, Bye\n')

@@ -1,4 +1,5 @@
 from scapy.all import *
+import AirDumpParser
 
 # Console colors
 W = '\033[0m'  # white (normal)
@@ -15,7 +16,6 @@ plu = '['+G+'+'+W+'] '
 
 ap_list = []
 
-
 def ssidSniffer(pkt):
     if pkt.haslayer(Dot11):
         if pkt.type == 0 and pkt.subtype == 8:
@@ -24,9 +24,25 @@ def ssidSniffer(pkt):
                 print "AP MAC: %s with SSID: %s " % (pkt.addr2, pkt.info)
 
 
-def Airodump(pkt):
-    cmd = "airodump-ng "
-    print '[INFO] Looking for a Wlan interface'
+def Airdump(interface, filename):
+    cmd = 'airodump-ng -w '+filename+' --output-format csv '+interface
+    try:
+        subprocess.check_output(cmd, shell=True)
+    except KeyboardInterrupt:
+        print B+'[INFO]'+W+' Stop Dumping'
+        pass
+
+    print B+'[INFO]'+W+' Analyzing results file'
+    cmd = 'ls -t | grep '+filename+'| head -n 1'
+    file_result = subprocess.check_output(cmd, shell=True)
+    file_result = file_result.rstrip()
+    time.sleep(1)  # take time before re-open output file
+    try:
+        AirDumpParser.csvParser(file_result)
+    except KeyboardInterrupt:
+        print(R+'[INFO]'+W+' Exiting to main menu')
+
+    return True
 
 
 def sendibleDataSniff(pkt):
