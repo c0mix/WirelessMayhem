@@ -1,5 +1,8 @@
-import os, subprocess, sys
+import os
+import subprocess
+import sys
 import Sniffer
+import FakeAccessPoint
 from scapy.all import *
 
 # Console colors
@@ -143,7 +146,7 @@ def main():
                 else:
                     print R +'[INFO]'+ W+' Exiting'
                     exit(1)
-                    
+
             elif input == '5':
                 interface = selectMON_interface()
                 if interface:
