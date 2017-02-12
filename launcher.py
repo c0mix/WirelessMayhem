@@ -65,6 +65,7 @@ def selectMON_interface():
 
 
 def selectWLAN_interface():
+    '''
     print B+'[INFO]'+W+' Looking for a monitor-mode interface'
 
     # cerca interfacce in monitor mode
@@ -79,25 +80,23 @@ def selectWLAN_interface():
 
     # cerca interfacce wireless
     if not mon_interfaces:
-        cmd = "ifconfig -a | grep wlan"
-        print B+'[INFO]'+W+' Looking for a Wlan interface'
+    '''
 
-        try:
-            wlan_interfaces = subprocess.check_output(cmd, shell=True)
+    print B+'[INFO]'+W+' Looking for a Wlan interface'
+    cmd = "ifconfig -a | grep wlan"
 
-        except:
-            # non ci sono nemmeno interfacce wireless
-            print R+'[INFO]'+W+' No Wlan interfaces found... Exiting'
-            return False
+    try:
+        wlan_interfaces = subprocess.check_output(cmd, shell=True)
 
-        # ci sono interfacce ma esci e metti in monitor
-        if wlan_interfaces:
-            print G+'[INFO]'+W+' Wlan found'
-            print B+'[INFO]'+W+' Please put in monitor mode ("$ airmon-ng start wlanX") one of these interfaces:\n'+wlan_interfaces
-            return False
-    else:
-        interface = raw_input('Enter a Monitor interface: ')
+    except:
+        # non ci sono nemmeno interfacce wireless
+        print R+'[INFO]'+W+' No Wlan interfaces found... Exiting'
+        return False
 
+    # ci sono interfacce ma esci e metti in monitor
+    print G+'[INFO]'+W+' Wlan found'
+    print B+'[INFO]'+W+' Please put in monitor mode ("$ airmon-ng start wlanX") one of these interfaces:\n'+wlan_interfaces
+    interface = raw_input('Enter a Monitor interface: ')
     return interface
 
 
