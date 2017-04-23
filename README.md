@@ -1,11 +1,34 @@
 <img src="images/logo.png" align="center" />
 
 
-### Description
+## Project Description
+This tool was developed as a final project of "Wireless network" course @ Università degli Studi di Milano.
+Our professor asked us to develop something intresting, innovative and creative regardingono of the wireless technologies tha we studied during his coursework, so, while am'actually working as a pentester in a milan based company, i decided to build a small framework that will automate some of the workflo process while analyzing wireless network:
+phase 1 -> discovery with airodump integration and output parsing
+phase 2 -> sensible informatino disclosure with regex based sniffer
+phase 3 -> attacking the enterprise protocol WPA-PEAP with a fake access point 
+
+## Project Technical Detail
 Wireless Mayhem is a python framework built for automate wireless attacks.
 The main features are:
 - Sniffing tools
 - Fake Access Point based attacks
+### What I can Do whit Wireless Mayhem
+- Sniffing
+- Discovery
+- Attack 
 
+
+## Installation
+
+### Dependencies
+
+### How to install on Debian
+
+## 
+
+## Final Presentation Slide
+
+## Screenshots & Video Demo
 [![FTP credential Sniffing](https://img.youtube.com/vi/KcH81PO7jVk/0.jpg)](https://www.youtube.com/watch?v=KcH81PO7jVk)
 
