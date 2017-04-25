@@ -1,9 +1,12 @@
-<img src="images/logo.png" align="center" />
-
+<img src="images/logo.png" align="center"/>
 
 ## Project Description
-This tool was developed as a final project of "Wireless network" course @ Università degli Studi di Milano.
-Our professor asked us to develop something intresting, innovative and creative regardingono of the wireless technologies tha we studied during his coursework, so, while am'actually working as a pentester in a milan based company, i decided to build a small framework that will automate some of the workflo process while analyzing wireless network:
+This tool was developed as a final project of the "Wireless network" course @ Università degli Studi di Milano.
+Our professor asked us to develop something intresting, innovative and creative regarding the wireless technologies tha we have studied during his coursework. 
+I decided to build a small framework that will automate some of the tipical phases of the procedure that a penetration tester or a security expert have to perform in order to make a correct wireless network assessment.
+
+### Wireless Assessment 
+<img src="images/flowchartWIfIassessment.pdf" align="center"/>
 phase 1 -> discovery with airodump integration and output parsing
 phase 2 -> sensible informatino disclosure with regex based sniffer
 phase 3 -> attacking the enterprise protocol WPA-PEAP with a fake access point 
