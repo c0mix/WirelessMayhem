@@ -6,7 +6,7 @@ Our professor asked us to develop something intresting, innovative and creative 
 I decided to build a small framework that will automate some of the tipical phases of the procedure that a penetration tester or a security expert have to perform in order to make a correct wireless network assessment.
 
 ### Wireless Assessment 
-<img src="images/flowchartWIFIassessment.pdf" align="center"/>
+<img src="images/flowchartWIFIassessment.png" align="center"/>
 phase 1 -> discovery with airodump integration and output parsing
 phase 2 -> sensible informatino disclosure with regex based sniffer
 phase 3 -> attacking the enterprise protocol WPA-PEAP with a fake access point 
