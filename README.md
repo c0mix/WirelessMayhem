@@ -21,15 +21,15 @@ The main features are:
 
 ## Hardware
 In my personal experience with wifi penetration testing, I suggest you to buy this external wifi antenna: 
-http://www.tp-link.it/products/details/cat-11_TL-WN722N.html
+- http://www.tp-link.it/products/details/cat-11_TL-WN722N.html
 but any type of wireless network adapter, if capable of packet injection, should work well, just check the compatibilty list here:
-https://www.aircrack-ng.org/doku.php?id=compatible_cards
+- https://www.aircrack-ng.org/doku.php?id=compatible_cards
 
-## Installation
+## WMF Setup (on Debian)
 
 ### Dependencies
 
-### How to install on Debian
+### Setup
 
 ## 
 
