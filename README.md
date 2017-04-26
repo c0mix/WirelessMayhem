@@ -22,7 +22,8 @@ Thanks to Wireless Mayhem Framewoork you can automate some stpes of the wireless
 ### Hardware
 In my personal experience with wifi penetration testing, I suggest you to buy this external wifi antenna: 
 - http://www.tp-link.it/products/details/cat-11_TL-WN722N.html
-but any type of wireless network adapter, if capable of packet injection, should work well, just check the compatibilty list here:
+
+But any type of wireless network adapter, if capable of packet injection, should work well, just check the compatibilty list here:
 - https://www.aircrack-ng.org/doku.php?id=compatible_cards
 
 ## WMF Setup (on Debian)
