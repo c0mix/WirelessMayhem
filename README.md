@@ -4,8 +4,14 @@
 This tool was developed as a final project of the "Wireless network" course @ Università degli Studi di Milano.
 Our professor asked us to develop something intresting, innovative and creative regarding the wireless technologies tha we have studied during his coursework. 
 I decided to build a small framework that will automate some of the tipical phases of the procedure that a penetration tester or a security expert have to perform in order to make a correct wireless network assessment.
-
-## What can I do with the Wireless Mayhem Framework (WMF)
+## Technical Details
+Wireless Mayhem is a python3 framework built for automate wireless attacks.
+### Main Features
+- Sniffing tools
+- Fake Access Point based attacks
+- Modular and scalable approach
+- Easy to custom
+### What can I do with the Wireless Mayhem Framework (WMF)
 Thanks to Wireless Mayhem Framewoork you can automate some stpes of the wireless assessment procedure:
 <img src="images/flowchartWIFIassessment.png" align="center"/>
 
@@ -13,13 +19,7 @@ Thanks to Wireless Mayhem Framewoork you can automate some stpes of the wireless
 - **ATTACK & CRACK**: WMF implements a Fake AP using the hostapd-wpe software, which, for example, is capable to simulate a PEAP-WPA Enterprise network Access Point and intercept the passwords hashes but it can be also configured for instantiate a simple fake AP useful for many other attacks.
 - **ASSESS**: WMF actually provides three different sniffer filters based on regular expressions and the python's scapy library; with this configuration you only  have to choose what you want to sniff and the launch the tool. 
 
-## Hardware
-Wireless Mayhem is a python framework built for automate wireless attacks.
-The main features are:
-- Sniffing tools
-- Fake Access Point based attacks
-
-## Hardware
+### Hardware
 In my personal experience with wifi penetration testing, I suggest you to buy this external wifi antenna: 
 - http://www.tp-link.it/products/details/cat-11_TL-WN722N.html
 but any type of wireless network adapter, if capable of packet injection, should work well, just check the compatibilty list here:
@@ -31,7 +31,10 @@ but any type of wireless network adapter, if capable of packet injection, should
 
 ### Setup
 
-## 
+### First Run 
+
+### Deploy New Module
+
 
 ## Final Presentation Slide
 
