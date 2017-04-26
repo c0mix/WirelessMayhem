@@ -41,4 +41,3 @@ But any type of wireless network adapter, if capable of packet injection, should
 
 ## Screenshots & Video Demo
 [![FTP credential Sniffing](https://img.youtube.com/vi/KcH81PO7jVk/0.jpg)](https://www.youtube.com/watch?v=KcH81PO7jVk)
-<iframe width="560" height="315" src="https://www.youtube.com/embed/KcH81PO7jVk" frameborder="0" allowfullscreen></iframe>
