@@ -31,46 +31,44 @@ But any type of wireless network adapter, if capable of packet injection, should
 ### Dependencies
 
 - **Hostapd-wpe** (https://github.com/OpenSecurityResearch/hostapd-wpe)
-    Building instruction from the official repository:
-```
-    $ git clone https://github.com/OpenSecurityResearch/hostapd-wpe
-```
-    Ubuntu/Debian/Kali Building -
-    -----------------------------------------------------------------------
-```
-        $ apt-get update
-        $ apt-get install libssl-dev libnl-dev
 
-        if you're using Kali 2.0 install:
-        $ apt-get install libssl-dev libnl-genl-3-dev
-```
-    General -
-    ------------------------------------------------------------------------
-    	Now apply the hostapd-wpe.patch:
-```
-        $ git clone https://github.com/OpenSecurityResearch/hostapd-wpe
+Building instruction from the official repository:
 
-        $ wget http://hostap.epitest.fi/releases/hostapd-2.6.tar.gz
-        $ tar -zxf hostapd-2.6.tar.gz
-        $ cd hostapd-2.6
-        $ patch -p1 < ../hostapd-wpe/hostapd-wpe.patch
-        $ cd hostapd
 ```
-        If you're using Kali 2.0 edit .config file and uncomment:
-        CONFIG_LIBNL32=y
+$ git clone https://github.com/OpenSecurityResearch/hostapd-wpe
+
+Ubuntu/Debian/Kali Building:
 ```
-        $ make
-```
-        I copied the certs directory and scripts from FreeRADIUS to ease that
-        portion of things. You should just be able to:
-```
-        $ cd ../../hostapd-wpe/certs
-        $ ./bootstrap
-```
-        then finally just:
-```
-        $ cd ../../hostapd-2.6/hostapd
-        $ sudo ./hostapd-wpe hostapd-wpe.conf
+$ apt-get update
+$ apt-get install libssl-dev libnl-dev
+
+If you're using Kali 2.0 install:
+
+$ apt-get install libssl-dev libnl-genl-3-dev
+
+Now apply the hostapd-wpe.patch:
+
+$ git clone https://github.com/OpenSecurityResearch/hostapd-wpe
+$ wget http://hostap.epitest.fi/releases/hostapd-2.6.tar.gz
+$ tar -zxf hostapd-2.6.tar.gz
+$ cd hostapd-2.6
+$ patch -p1 < ../hostapd-wpe/hostapd-wpe.patch
+$ cd hostapd
+
+If you're using Kali 2.0 edit .config file and uncomment:
+CONFIG_LIBNL32=y
+
+$ make
+
+I copied the certs directory and scripts from FreeRADIUS to ease that portion of things. You should just be able to:
+
+$ cd ../../hostapd-wpe/certs
+$ ./bootstrap
+
+Then finally just:
+
+$ cd ../../hostapd-2.6/hostapd
+$ sudo ./hostapd-wpe hostapd-wpe.conf
 ```
 
 - **Python-Scapy** (http://www.secdev.org/projects/scapy/)
