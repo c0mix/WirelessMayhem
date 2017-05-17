@@ -30,7 +30,18 @@ But any type of wireless network adapter, if capable of packet injection, should
 
 ### Dependencies
 
+- **Hostapd-wpe** (https://github.com/OpenSecurityResearch/hostapd-wpe)
+- **Python-Scapy** (http://www.secdev.org/projects/scapy/)
+- **Aircrack-ng suite** (https://www.aircrack-ng.org/)
+
 ### Setup
+
+After download and installing all the dependencies:
+```
+$ git clone https://github.com/c0mix/WirelessMayhem.git
+$ cd WirelessMayhem
+$ sudo python3 launcher.py
+```
 
 ### First Run 
 
