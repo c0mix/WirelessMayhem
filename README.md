@@ -60,7 +60,8 @@ CONFIG_LIBNL32=y
 
 $ make
 
-I copied the certs directory and scripts from FreeRADIUS to ease that portion of things. You should just be able to:
+I copied the certs directory and scripts from FreeRADIUS to ease that portion of things.
+You should just be able to:
 
 $ cd ../../hostapd-wpe/certs
 $ ./bootstrap
@@ -73,13 +74,15 @@ $ sudo ./hostapd-wpe hostapd-wpe.conf
 
 - **Python-Scapy** (http://www.secdev.org/projects/scapy/)
 ```
-        $ sudo pip install scapy
+$ pip install scapy
 ```
 
 - **Aircrack-ng suite** (https://www.aircrack-ng.org/)
 ```
-        $ sudo apt-get install aircrack-ng
+$ sudo apt-get install aircrack-ng
 ```
+
+- **FreeRadius-WPE** (https://github.com/brad-anton/freeradius-wpe)
 
 ### Setup
 

@@ -31,6 +31,7 @@ def print_menu():
     print(O + '[3]' + W + ' FTP Credential Sniffer')
     print(O + '[4]' + W + ' Mail Sniffer')
     print(O + '[5]' + W + ' Airodump')
+    print(O + '[6]' + W + ' Fake Access Point')
 
 
 def selectMON_interface():
@@ -159,8 +160,18 @@ def main():
                 else:
                     print R +'[INFO]'+ W+' Exiting'
                     exit(1)
-
                 time.sleep(1)
+
+            elif input == '6':
+                print G + '[INFO] Starting Fake Access Point' + W
+                try:
+                    fap = FakeAccessPoint.FakeAccessPoint()
+                    fap.setConf()
+                    fap.run()
+                except(KeyboardInterrupt, SystemExit):
+                    print R + '[INFO]' + W + ' Exiting'
+                    exit(1)
+
 
         #exiting with ctrlC
         except KeyboardInterrupt:
