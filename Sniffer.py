@@ -32,9 +32,9 @@ def Airdump(interface, filename):
         print B+'[INFO]'+W+' Stop Dumping'
         pass
 
-    print B+'[INFO]'+W+' Analyzing results file'
     cmd = 'ls -t | grep '+filename+'| head -n 1'
     file_result = subprocess.check_output(cmd, shell=True)
+    print B+'[INFO]'+W+' Analyzing results file: '+file_result
     file_result = file_result.rstrip()
     time.sleep(1)  # take time before re-open output file
     try:

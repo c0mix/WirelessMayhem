@@ -105,8 +105,8 @@ def main():
             if input == '1':
                 interface = selectMON_interface()
                 if interface:
-                    print G + '[INFO] Starting Wi-Fi SSID Sniffer' + W
-                    print G + '[INFO] Waiting for something interesting...' + W
+                    print G + '[INFO]' + W + ' Starting Wi-Fi SSID Sniffer'
+                    print G + '[INFO]' + W + ' Waiting for something interesting...'
                     try:
                         sniff(iface=interface, prn=Sniffer.ssidSniffer)
                     except(KeyboardInterrupt, SystemExit):
@@ -118,8 +118,8 @@ def main():
             elif input == '2':
                 interface = selectMON_interface()
                 if interface:
-                    print G + '[INFO] Starting Sensible Data Sniffer' + W
-                    print G + '[INFO] Waiting for something interesting...' + W
+                    print G + '[INFO]' + W + ' Starting Sensible Data Sniffer'
+                    print G + '[INFO]' + W + ' Waiting for something interesting...'
                     try:
                         sniff(filter='tcp', iface=interface, prn=Sniffer.sendibleDataSniff, store=0)
                     except(KeyboardInterrupt, SystemExit):
@@ -131,8 +131,8 @@ def main():
             elif input == '3':
                 interface = selectWLAN_interface()
                 if interface:
-                    print G + '[INFO] Starting FTP Credential Sniffer' + W
-                    print G + '[INFO] Waiting for something interesting...' + W
+                    print G + '[INFO]' + W + ' Starting FTP Credential Sniffer'
+                    print G + '[INFO]' + W + ' Waiting for something interesting...'
                     try:
                         sniff(filter='tcp port 21', iface=interface, prn=Sniffer.ftpSniff, store=0)
                     except(KeyboardInterrupt, SystemExit):
@@ -144,8 +144,8 @@ def main():
             elif input == '4':
                 interface = selectWLAN_interface()
                 if interface:
-                    print G + '[INFO] Starting Mail Sniffer' + W
-                    print G + '[INFO] Waiting for something interesting...' + W
+                    print G + '[INFO]' + W + ' Starting Mail Sniffer'
+                    print G + '[INFO]' + W + ' Waiting for something interesting...'
                     try:
                         sniff(filter="tcp port 110 or tcp port 25 or tcp port 143", prn=Sniffer.mailSniff, store=0)
                     except(KeyboardInterrupt, SystemExit):
@@ -157,7 +157,7 @@ def main():
             elif input == '5':
                 interface = selectMON_interface()
                 if interface:
-                    print G + '[INFO] Starting AirDump' + W
+                    print G + '[INFO]' + W + ' Starting AirDump'
                     filename = select_filename()
                     try:
                         Sniffer.Airdump(interface, filename)
@@ -169,7 +169,7 @@ def main():
                 time.sleep(1)
 
             elif input == '6':
-                print G + '[INFO] Starting Fake Access Point' + W
+                print G + '[INFO]' + W + ' Starting Fake Access Point'
                 try:
                     fap = FakeAccessPoint.FakeAccessPoint()
                     fap.setConf()
