@@ -36,7 +36,7 @@ def print_menu():
 
 def selectMON_interface():
     print B+'[INFO]'+W+' Looking for a monitor-mode interface'
-    cmd = "ifconfig -a | grep mon"
+    cmd = "ifconfig -a | grep mon | cut -d ':' -f1"
     try: # cerca interfacce in monitor mode
         mon_interfaces = subprocess.check_output(cmd, shell=True)
         print mon_interfaces
@@ -47,7 +47,7 @@ def selectMON_interface():
 
     # cerca interfacce wireless wlanX
     if not mon_interfaces:
-        cmd = "ifconfig -a | grep wlan"
+        cmd = "ifconfig -a | grep wlan | cut -d ':' -f1"
         print B+'[INFO]'+W+' Looking for a Wlan interface'
 
         try:
@@ -93,6 +93,8 @@ def select_filename():
 
 def main():
     check_root()
+    cmd = 'cat images/logo.txt'
+    os.system(cmd)
     while True:
         #loop forever looking for an option
         try:
@@ -104,6 +106,7 @@ def main():
                 interface = selectMON_interface()
                 if interface:
                     print G + '[INFO] Starting Wi-Fi SSID Sniffer' + W
+                    print G + '[INFO] Waiting for something interesting...' + W
                     try:
                         sniff(iface=interface, prn=Sniffer.ssidSniffer)
                     except(KeyboardInterrupt, SystemExit):
@@ -116,6 +119,7 @@ def main():
                 interface = selectMON_interface()
                 if interface:
                     print G + '[INFO] Starting Sensible Data Sniffer' + W
+                    print G + '[INFO] Waiting for something interesting...' + W
                     try:
                         sniff(filter='tcp', iface=interface, prn=Sniffer.sendibleDataSniff, store=0)
                     except(KeyboardInterrupt, SystemExit):
@@ -128,6 +132,7 @@ def main():
                 interface = selectWLAN_interface()
                 if interface:
                     print G + '[INFO] Starting FTP Credential Sniffer' + W
+                    print G + '[INFO] Waiting for something interesting...' + W
                     try:
                         sniff(filter='tcp port 21', iface=interface, prn=Sniffer.ftpSniff, store=0)
                     except(KeyboardInterrupt, SystemExit):
@@ -140,6 +145,7 @@ def main():
                 interface = selectWLAN_interface()
                 if interface:
                     print G + '[INFO] Starting Mail Sniffer' + W
+                    print G + '[INFO] Waiting for something interesting...' + W
                     try:
                         sniff(filter="tcp port 110 or tcp port 25 or tcp port 143", prn=Sniffer.mailSniff, store=0)
                     except(KeyboardInterrupt, SystemExit):
@@ -177,6 +183,7 @@ def main():
         except KeyboardInterrupt:
             print R +'[INFO]'+ W+' Exiting'
             exit(0)
+
 
 if __name__ == '__main__':
     main()
