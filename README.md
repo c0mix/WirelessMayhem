@@ -87,7 +87,7 @@ $ sudo apt-get install aircrack-ng
 
 - **FreeRadius-WPE** (https://github.com/brad-anton/freeradius-wpe)
 
-### Setup
+### Clone and Launch
 
 After download and installing all the dependencies:
 ```
@@ -115,7 +115,7 @@ if you wanto to build your custom module you simple need to put all your stuff a
 ```
 ## Final Presentation Slide
 
-<img src="slide.pdf" align="center"/>
+<p src="Wi-Fi_Mayhem_Slide.pdf"/>
 
 
 ## Screenshots & Video Demo
