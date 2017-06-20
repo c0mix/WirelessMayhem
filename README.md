@@ -96,9 +96,24 @@ $ sudo python3 launcher.py
 ### First Run 
 
 ### Deploy New Module
+if you wanto to build your custom module you simple need to put all your stuff and code inside a separte python file, import it into the laucher.py one and add an entry into the "loop-menu". As Example:
 
-
+- Create example.py file and put it inside the Wireless Mayhem folder.
+- Import your module inside laucher.py adding the following line
+```
+  import example.py
+```
+- Adding an entry inside the menù for calling your module:
+```
+  elif input == '6':
+    print G + '[INFO]' + W + ' Starting Fake Access Point'
+         [...]
+  elif input == '7':
+    print G + '[INFO]' + W + ' Starting example'
+         [...]
+```
 ## Final Presentation Slide
+
 
 ## Screenshots & Video Demo
 [![FTP credential Sniffing](https://img.youtube.com/vi/KcH81PO7jVk/0.jpg)](https://www.youtube.com/watch?v=KcH81PO7jVk)
