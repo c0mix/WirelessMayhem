@@ -1,4 +1,6 @@
-import os
+import os, time
+import subprocess
+from multiprocessing import Process
 
 # Console colors
 W = '\033[0m'  # white (normal)
@@ -14,35 +16,35 @@ min = '['+R+'-'+W+'] '
 plu = '['+G+'+'+W+'] '
 
 # definire file di configurazione: parti da un template
+def execCommand(command):
+    os.system(command)
+    time.sleep(2)
+
 class FakeAccessPoint():
 
     def __init__(self):
         #self.interface = wlan
-        self.conf = 'hostap_def.conf'
-        self.hostapd = '/home/lcomi/work/software/hostapd-2.2/hostapd/hostapd'
-        self.logfile = '/usr/local/var/log/radius/freeradius-server-wpe.log'
+        conf = '/home/lcomi/school/wireless/WirelessMayhem/hostap_def.conf'
+        hostapd = '/home/lcomi/work/software/hostapd-2.2/hostapd/hostapd'
+        logfile = '/usr/local/var/log/radius/freeradius-server-wpe.log'
 
     def setConf(self):
-        print 'Specify a configuration file path or digit "d" for use the default one: '
-        input = raw_input()
-        if input != 'd':
-            self.conf = input
-        else:
-            print 'You select the default configuration: '
-            os.system('cat hostap_def.conf')
-
+        print G + '[INFO]' + W +' Please edit the configuration file e.g. "/home/lcomi/school/wireless/WirelessMayhem/DEF_hostapd.conf" when you are done, press CTL+C'
+        b=True
+        while b==True:
+            try:
+                time.sleep(3)
+            except(KeyboardInterrupt, SystemExit):
+                b=False
+                print G + '[INFO]' + W + 'Starting the Fake AP'
 
     def run(self):
-        command = 'radiusd -X'
 
-        command = './hostapd-wpe ' + self.conf
+        os.chdir('/home/lcomi/work/software/hostapd-2.6/hostapd')
 
-        command = 'tail -f /usr/local/var/log/radius/freeradius-server-wpe.log' #se nuova istanza questo file potrebbe non essere ancora stato creato
-        os.system(command)
+        proc = subprocess.Popen('xterm -e radiusd -X', shell=True)
+        time.sleep(2)
+        proc1 = subprocess.Popen('xterm -e ./hostapd-wpe /home/lcomi/school/wireless/WirelessMayhem/DEF_hostapd.conf', shell=True)
+        time.sleep(2)
+        proc2 = subprocess.Popen('xterm -e tail -f /usr/local/var/log/radius/freeradius-server-wpe.log', shell=True)
 
-# lanciare freeradius ... prima di hostapd
-# lanciare hostapd ... usa anche finestre temrinale... GUI
-# notifica password intercettata ... puoi lanciare un tail in un altra finestra
-# quando si preme ctrl+c si blocca il tutto, si termina freeradius e l'hostapd
-# si chiude la finestra con il tail
-# si mostrano a video i risultati

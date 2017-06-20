@@ -157,7 +157,7 @@ def main():
             elif input == '5':
                 interface = selectMON_interface()
                 if interface:
-                    print G + '[INFO]' + W + ' Starting AirDump'
+                    print G + '[INFO]' + W + ' Starting AiroDump'
                     filename = select_filename()
                     try:
                         Sniffer.Airdump(interface, filename)
