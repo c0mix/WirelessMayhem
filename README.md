@@ -90,10 +90,8 @@ After download and installing all the dependencies:
 ```
 $ git clone https://github.com/c0mix/WirelessMayhem.git
 $ cd WirelessMayhem
-$ sudo python3 launcher.py
+$ sudo python launcher.py
 ```
-
-### First Run 
 
 ### Deploy New Module
 if you wanto to build your custom module you simple need to put all your stuff and code inside a separte python file, import it into the laucher.py one and add an entry into the "loop-menu". As Example:
@@ -113,6 +111,8 @@ if you wanto to build your custom module you simple need to put all your stuff a
          [...]
 ```
 ## Final Presentation Slide
+<img src="images/mainMenu.png" align="center"/>
+<img src="slide.pdf" align="center"/>
 
 
 ## Screenshots & Video Demo
