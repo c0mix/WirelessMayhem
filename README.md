@@ -115,7 +115,7 @@ if you wanto to build your custom module you simple need to put all your stuff a
 ```
 ## Final Presentation Slide
 
-<p src="Wi-Fi_Mayhem_Slide.pdf"/>
+[](Wi-Fi_Mayhem_Slide.pdf)
 
 
 ## Screenshots & Video Demo
