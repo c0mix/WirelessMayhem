@@ -1,11 +1,11 @@
 <img src="images/logo.png" align="center"/>
 
 ## Project Description
-This tool was developed as a final project of the "Wireless network" course @ Università degli Studi di Milano.
-Our professor asked us to develop something intresting, innovative and creative regarding the wireless technologies tha we have studied during his coursework. 
-I decided to build a small framework that will automate some of the tipical phases of the procedure that a penetration tester or a security expert have to perform in order to make a correct wireless network assessment.
+This tool was developed as the final project of the "Wireless Network" course @ Università degli Studi di Milano.
+Our professor asked us to develop something intresting, innovative and creative regarding wireless technologies that we have studied during his coursework. 
+I decided to create a small framework that will automate some of the tipical phases of the procedure that a penetration tester or a security expert have to perform in order to make a correct wireless network assessment.
 ## Technical Details
-Wireless Mayhem is a python framework built for automate wireless attacks.
+Wireless Mayhem is a python framework developped to automate wireless discovery and exploitation.
 ### Main Features
 - Sniffing tools
 - Fake Access Point based attacks
