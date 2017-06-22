@@ -12,7 +12,7 @@ Wireless Mayhem is a python framework developed to automate wireless discovery a
 - Modular and scalable approach
 - Easy to custom
 ### What can I do with Wireless Mayhem Framework (WMF)
-Thanks to Wireless Mayhem Framewoork you can automate some steps of the wireless assessment procedure:
+Thanks to Wireless Mayhem Framework you can automate some steps of the wireless assessment procedure:
 <img src="images/flowchartWIFIassessment.png" align="center"/>
 
 - **DISCOVER**: the WMF integration with airodump-ng can find out any Wireless network that is near you and provide a user friendly output in order to speed up the reconnaissance and discovery phases.
