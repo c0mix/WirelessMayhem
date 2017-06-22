@@ -2,8 +2,8 @@
 
 ## Project Description
 This tool was developed as the final project of the "Wireless Network" course @ Università degli Studi di Milano.
-Our professor asked us to develop something intresting, innovative and creative regarding wireless technologies that we have studied during his coursework. 
-I decided to create a small framework that will automate some of the tipical phases of the procedure that a penetration tester or a security expert have to perform in order to make a correct wireless network assessment.
+Our professor asked us to develop something interesting, innovative and creative regarding wireless technologies that we have studied during his coursework. 
+I decided to create a small framework that will automate some of the tipical phases of the procedure that penetration testers or security experts have to perform in order to make a correct wireless network assessment.
 ## Technical Details
 Wireless Mayhem is a python framework developed to automate wireless discovery and exploitation.
 ### Main Features
@@ -11,22 +11,22 @@ Wireless Mayhem is a python framework developed to automate wireless discovery a
 - Fake Access Point based attacks
 - Modular and scalable approach
 - Easy to custom
-### What can I do with the Wireless Mayhem Framework (WMF)
-Thanks to Wireless Mayhem Framewoork you can automate some stpes of the wireless assessment procedure:
+### What can I do with Wireless Mayhem Framework (WMF)
+Thanks to Wireless Mayhem Framewoork you can automate some steps of the wireless assessment procedure:
 <img src="images/flowchartWIFIassessment.png" align="center"/>
 
-- **DISCOVER**: the WMF integration with airodump-ng, can discover any Wireless network that is near you and provide a user friendly output in order to speed up the reconnaissance and discovery phases.
-- **ATTACK & CRACK**: WMF implements a Fake AP using the hostapd-wpe software, which, for example, is capable to simulate a PEAP-WPA Enterprise network Access Point and intercept the passwords hashes but it can be also configured for instantiate a simple fake AP useful for many other attacks.
-- **ASSESS**: WMF actually provides three different sniffer filters based on regular expressions and the python's scapy library; with this configuration you only  have to choose what you want to sniff and the launch the tool. 
+- **DISCOVER**: the WMF integration with airodump-ng can find out any Wireless network that is near you and provide a user friendly output in order to speed up the reconnaissance and discovery phases.
+- **ATTACK & CRACK**: WMF implements a Fake AP using the hostapd-wpe software which, for example, is able to simulate a PEAP-WPA Enterprise network Access Point and intercept passwords hashes; it can be also configured to instantiate a simple fake AP useful for many other attacks.
+- **ASSESS**: WMF actually provides three different sniffer filters based on regular expressions and python's scapy library; with this configuration you only have to choose what you want to sniff and then launch the tool. 
 
 ### Architecture
 <img src="/images/Senza titolo.png" align="center"/>
 
 ### Hardware
-In my personal experience with wifi penetration testing, I suggest you to buy this external wifi antenna: 
+Based on my personal experience with wifi penetration testing, I suggest you buying this external wifi antenna: 
 - http://www.tp-link.it/products/details/cat-11_TL-WN722N.html
 
-But any type of wireless network adapter, if capable of packet injection, should work well, just check the compatibilty list here:
+However any kynd of wireless network adapter, if capable of packet injection, should work well, just check the compatibilty list here:
 - https://www.aircrack-ng.org/doku.php?id=compatible_cards
 
 ## WMF Setup (on Debian)
@@ -89,7 +89,7 @@ $ sudo apt-get install aircrack-ng
 
 ### Clone and Launch
 
-After download and installing all the dependencies:
+After downloading and installing all the dependencies:
 ```
 $ git clone https://github.com/c0mix/WirelessMayhem.git
 $ cd WirelessMayhem
@@ -97,14 +97,14 @@ $ sudo python launcher.py
 ```
 
 ### Deploy New Module
-if you wanto to build your custom module you simple need to put all your stuff and code inside a separte python file, import it into the laucher.py one and add an entry into the "loop-menu". As Example:
+If you want to create your custom module you simple need to put all your stuff and code into a separte python file, import it into the laucher.py one and add an entry into the "loop-menu".
 
-- Create example.py file and put it inside the Wireless Mayhem folder.
+- Create example.py file and put it into the Wireless Mayhem folder.
 - Import your module inside laucher.py adding the following line
 ```
   import example.py
 ```
-- Adding an entry inside the menù for calling your module:
+- Add an entry inside the menu for calling your module:
 ```
   elif input == '6':
     print G + '[INFO]' + W + ' Starting Fake Access Point'
