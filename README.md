@@ -15,7 +15,7 @@ Wireless Mayhem is a python framework developed to automate wireless discovery a
 Thanks to Wireless Mayhem Framework you can automate some steps of the wireless assessment procedure:
 <img src="images/flowchartWIFIassessment.png" align="center"/>
 
-- **DISCOVER**: the WMF integration with airodump-ng can find out any Wireless network that is near you and provide a user friendly output in order to speed up the reconnaissance and discovery phases.
+- **DISCOVER**: the WMF integration with airodump-ng can find out any Wireless network that is near to you and provide a user friendly output in order to speed up the reconnaissance and discovery phases.
 - **ATTACK & CRACK**: WMF implements a Fake AP using the hostapd-wpe software which, for example, is able to simulate a PEAP-WPA Enterprise network Access Point and intercept passwords hashes; it can be also configured to instantiate a simple fake AP useful for many other attacks.
 - **ASSESS**: WMF actually provides three different sniffer filters based on regular expressions and python's scapy library; with this configuration you only have to choose what you want to sniff and then launch the tool. 
 
